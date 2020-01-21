@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface PasswordStore {
 
+    PasswordRecord getRecordById(String recordId);
+
     List<String> getAllKeysByUserId(String userId);
 
     List<PasswordRecord> getAllRecordsByUserAndKey(String userId, String key);

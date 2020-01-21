@@ -7,6 +7,11 @@ import java.util.List;
 public class DynamoDBPasswordStore implements PasswordStore {
 
     @Override
+    public PasswordRecord getRecordById(String recordId) {
+        return PasswordRecord.builder().recordId(recordId).build();
+    }
+
+    @Override
     public List<String> getAllKeysByUserId(String userId) {
         return null;
     }
