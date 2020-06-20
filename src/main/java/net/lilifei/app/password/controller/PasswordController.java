@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 public class PasswordController {
 
@@ -16,7 +18,8 @@ public class PasswordController {
     }
 
     @GetMapping("/password/{recordId}")
-    public PasswordRecord getPassword(@PathVariable("recordId") final String recordId) {
+    public PasswordRecord getPassword(@PathVariable("recordId") final String recordId,
+                                      final HttpServletRequest httpServletRequest) {
         return passwordStore.getRecordById(recordId);
     }
 }
