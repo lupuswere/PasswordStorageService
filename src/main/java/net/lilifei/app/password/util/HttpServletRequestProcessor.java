@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
-public class PostBodyGetter {
+import static net.lilifei.app.password.util.HttpSessionConstants.USER_ID;
+
+public class HttpServletRequestProcessor {
 
     public String getPostBody(final HttpServletRequest request) {
         try {
@@ -12,5 +14,11 @@ public class PostBodyGetter {
         } catch (final IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String getUserId(final HttpServletRequest request) {
+        final Object userIdObj = request.getSession().getAttribute(USER_ID);
+        if(userIdObj == null) return "";
+        return (String) userIdObj;
     }
 }
