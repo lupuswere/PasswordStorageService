@@ -1,14 +1,26 @@
 package net.lilifei.app.password.storage;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
 import net.lilifei.app.password.model.PasswordRecord;
 
 import java.util.List;
 
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class DynamoDBPasswordStore implements PasswordStore {
+
+    private final DynamoDBMapper dynamoDBMapper;
+
+    private final DynamoDBModelConverter dynamoDBModelConverter;
 
     @Override
     public PasswordRecord getRecordById(String recordId) {
-        return PasswordRecord.builder().recordId(recordId).build();
+        return dynamoDBModelConverter.toPasswordRecord(dynamoDBMapper.load(DynamoDBPasswordRecord.class, recordId));
     }
 
     @Override
@@ -22,8 +34,8 @@ public class DynamoDBPasswordStore implements PasswordStore {
     }
 
     @Override
-    public String createRecord(PasswordRecord passwordRecord) {
-        return null;
+    public void createRecord(final PasswordRecord passwordRecord) {
+        dynamoDBMapper.save(dynamoDBModelConverter.fromPasswordRecord(passwordRecord));
     }
 
     @Override

@@ -17,5 +17,5 @@ public class PasswordRecord {
 
     private String password;
 
-    private Map<String, Object> customizedFields;
+    private Map<String, String> customizedFields;
 }

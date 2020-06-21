@@ -12,7 +12,7 @@ public interface PasswordStore {
 
     List<PasswordRecord> getAllRecordsByUserAndKey(String userId, String key);
 
-    String createRecord(PasswordRecord passwordRecord);
+    void createRecord(PasswordRecord passwordRecord);
 
     void deleteRecord(String recordId);
 
