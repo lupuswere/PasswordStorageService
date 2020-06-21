@@ -28,18 +28,18 @@ public class PasswordController {
         this.uncheckedObjectMapper = uncheckedObjectMapper;
     }
 
-    @GetMapping("/password/{recordId}")
+    @GetMapping("/passwords/{recordId}")
     public PasswordRecord getPassword(@PathVariable("recordId") final String recordId,
                                       final HttpServletRequest httpServletRequest) {
         return passwordStore.getRecordById(recordId);
     }
 
-    @GetMapping("/password")
+    @GetMapping("/passwords")
     public List<PasswordRecord> getPasswords(final HttpServletRequest httpServletRequest) {
         return passwordStore.getAllRecordsByUserId("1234");
     }
 
-    @PostMapping(path = "/password", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/passwords", consumes = "application/json", produces = "application/json")
     public void addPassword(final HttpServletRequest request) {
         final String body = postBodyGetter.getPostBody(request);
         final PasswordCreationRequest passwordCreationRequest =
@@ -54,12 +54,12 @@ public class PasswordController {
         passwordStore.createRecord(passwordRecord);
     }
 
-    @DeleteMapping(path = "/password")
+    @DeleteMapping(path = "/passwords")
     public void deleteAllPasswords(final HttpServletRequest httpServletRequest) {
         passwordStore.deleteAllRecords("1234");
     }
 
-    @DeleteMapping(path = "/password/{recordId}")
+    @DeleteMapping(path = "/passwords/{recordId}")
     public void deletePassword(@PathVariable("recordId") final String recordId,
                                final HttpServletRequest httpServletRequest) {
         passwordStore.deleteRecord(recordId);

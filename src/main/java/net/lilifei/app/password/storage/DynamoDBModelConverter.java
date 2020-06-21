@@ -2,6 +2,7 @@ package net.lilifei.app.password.storage;
 
 import lombok.AllArgsConstructor;
 import net.lilifei.app.password.model.internal.PasswordRecord;
+import net.lilifei.app.password.model.internal.UserRecord;
 import net.lilifei.app.password.util.UncheckedObjectMapper;
 
 import java.util.Map;
@@ -10,6 +11,20 @@ import java.util.Map;
 public class DynamoDBModelConverter {
 
     private final UncheckedObjectMapper objectMapper;
+
+    public DynamoDBUserRecord fromUserRecord(final UserRecord userRecord) {
+        return DynamoDBUserRecord.builder()
+                .userId(userRecord.getUserId())
+                .password(userRecord.getPassword())
+                .build();
+    }
+
+    public UserRecord toUserRecord(final DynamoDBUserRecord dynamoDBUserRecord) {
+        return UserRecord.builder()
+                .userId(dynamoDBUserRecord.getUserId())
+                .password(dynamoDBUserRecord.getPassword())
+                .build();
+    }
 
     public DynamoDBPasswordRecord fromPasswordRecord(final PasswordRecord passwordRecord) {
         return DynamoDBPasswordRecord.builder()

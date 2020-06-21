@@ -5,9 +5,7 @@ import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import net.lilifei.app.password.storage.DynamoDBModelConverter;
-import net.lilifei.app.password.storage.DynamoDBPasswordStore;
-import net.lilifei.app.password.storage.PasswordStore;
+import net.lilifei.app.password.storage.*;
 import net.lilifei.app.password.util.UncheckedObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +20,16 @@ public class StorageConfig {
 
     @Value("${cloud.aws.credentials.secretKey}")
     private String secretKey;
+
+    @Bean
+    @Autowired
+    UserStore userStore(final DynamoDBMapper dynamoDBMapper,
+                        final DynamoDBModelConverter dynamoDBModelConverter) {
+        return DynamoDBUserStore.builder()
+                .dynamoDBMapper(dynamoDBMapper)
+                .dynamoDBModelConverter(dynamoDBModelConverter)
+                .build();
+    }
 
     @Bean
     @Autowired
