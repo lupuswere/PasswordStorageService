@@ -1,7 +1,7 @@
 package net.lilifei.app.password.controller;
 
-import net.lilifei.app.password.model.PasswordRecord;
-import net.lilifei.app.password.model.password.PasswordCreationRequest;
+import net.lilifei.app.password.model.internal.PasswordRecord;
+import net.lilifei.app.password.model.external.password.PasswordCreationRequest;
 import net.lilifei.app.password.storage.PasswordStore;
 import net.lilifei.app.password.util.PostBodyGetter;
 import net.lilifei.app.password.util.UncheckedObjectMapper;

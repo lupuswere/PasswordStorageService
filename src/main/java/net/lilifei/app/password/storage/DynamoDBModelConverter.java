@@ -1,7 +1,7 @@
 package net.lilifei.app.password.storage;
 
 import lombok.AllArgsConstructor;
-import net.lilifei.app.password.model.PasswordRecord;
+import net.lilifei.app.password.model.internal.PasswordRecord;
 import net.lilifei.app.password.util.UncheckedObjectMapper;
 
 import java.util.Map;

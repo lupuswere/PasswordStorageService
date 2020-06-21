@@ -1,4 +1,4 @@
-package net.lilifei.app.password.model;
+package net.lilifei.app.password.model.external.ping;
 
 import lombok.Builder;
 import lombok.Data;

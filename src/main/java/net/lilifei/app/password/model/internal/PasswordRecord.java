@@ -1,4 +1,4 @@
-package net.lilifei.app.password.model;
+package net.lilifei.app.password.model.internal;
 
 import lombok.Builder;
 import lombok.Data;

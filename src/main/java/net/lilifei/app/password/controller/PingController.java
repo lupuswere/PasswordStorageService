@@ -1,7 +1,7 @@
 package net.lilifei.app.password.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import net.lilifei.app.password.model.PingResult;
+import net.lilifei.app.password.model.external.ping.PingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

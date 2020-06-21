@@ -1,6 +1,6 @@
 package net.lilifei.app.password.storage;
 
-import net.lilifei.app.password.model.PasswordRecord;
+import net.lilifei.app.password.model.internal.PasswordRecord;
 
 import java.util.List;
 

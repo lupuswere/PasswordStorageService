@@ -1,4 +1,4 @@
-package net.lilifei.app.password.model.password;
+package net.lilifei.app.password.model.external.password;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

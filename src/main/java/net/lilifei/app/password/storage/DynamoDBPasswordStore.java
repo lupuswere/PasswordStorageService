@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
-import net.lilifei.app.password.model.PasswordRecord;
+import net.lilifei.app.password.model.internal.PasswordRecord;
 
 import java.util.List;
 
