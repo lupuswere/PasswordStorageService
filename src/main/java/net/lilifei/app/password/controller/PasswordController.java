@@ -8,6 +8,7 @@ import net.lilifei.app.password.util.UncheckedObjectMapper;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -33,6 +34,11 @@ public class PasswordController {
         return passwordStore.getRecordById(recordId);
     }
 
+    @GetMapping("/password")
+    public List<PasswordRecord> getPasswords(final HttpServletRequest httpServletRequest) {
+        return passwordStore.getAllRecordsByUserId("1234");
+    }
+
     @PostMapping(path = "/password", consumes = "application/json", produces = "application/json")
     public void addPassword(final HttpServletRequest request) {
         final String body = postBodyGetter.getPostBody(request);
@@ -46,5 +52,16 @@ public class PasswordController {
                 .customizedFields(passwordCreationRequest.getCustomizedFields())
                 .build();
         passwordStore.createRecord(passwordRecord);
+    }
+
+    @DeleteMapping(path = "/password")
+    public void deleteAllPasswords(final HttpServletRequest httpServletRequest) {
+        passwordStore.deleteAllRecords("1234");
+    }
+
+    @DeleteMapping(path = "/password/{recordId}")
+    public void deletePassword(@PathVariable("recordId") final String recordId,
+                               final HttpServletRequest httpServletRequest) {
+        passwordStore.deleteRecord(recordId);
     }
 }

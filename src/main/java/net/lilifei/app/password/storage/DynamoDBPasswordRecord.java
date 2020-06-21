@@ -2,27 +2,33 @@ package net.lilifei.app.password.storage;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Builder
+@NoArgsConstructor // Needed by Mapper
+@AllArgsConstructor
 @Data
 @DynamoDBTable(tableName = "password-record")
 public class DynamoDBPasswordRecord {
 
     @DynamoDBHashKey(attributeName = "recordId")
-    private final String recordId;
+    private String recordId;
 
     @DynamoDBAttribute(attributeName = "userId")
-    private final String userId;
+    @DynamoDBIndexHashKey(globalSecondaryIndexName = "userId-index", attributeName = "userId")
+    private String userId;
 
     @DynamoDBAttribute(attributeName = "key")
-    private final String key;
+    private String key;
 
     @DynamoDBAttribute(attributeName = "password")
-    private final String password;
+    private String password;
 
     @DynamoDBAttribute(attributeName = "customizedFields")
-    private final String customizedFields;
+    private String customizedFields;
 }

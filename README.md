@@ -8,7 +8,7 @@ In order to setup this service, you'll need:
 Your AWS account should include:
 
 1. An IAM user with access Key and secret exposed.</li>
-2. A DynamoDB table named `password-record`, primary key `recordId`.
+2. A DynamoDB table named `password-record`, primary key `recordId`, GSI `userId` and index name `userId-index`.
 3. A DynamoDB table named `user-record`, primay key `userId`.
 
 Your `application.properties` file should look like this:
